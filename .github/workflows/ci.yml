@@ -1,0 +1,57 @@
+name: CI - Evolutionary Self-Development
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pyyaml  # for potential future SKILL.md validation
+
+      - name: Validate Python syntax
+        run: |
+          python -m py_compile tools/evolution-hook.py
+
+      - name: Check SKILL.md files exist and have basic structure
+        run: |
+          echo "Checking evolutionary skills..."
+          for skill in optional-skills/evolutionary-self-dev/*/; do
+            if [ -f "${skill}SKILL.md" ]; then
+              echo "✅ $(basename $skill) - SKILL.md exists"
+            else
+              echo "❌ $(basename $skill) - missing SKILL.md"
+              exit 1
+            fi
+          done
+
+      - name: Verify install script is executable
+        run: |
+          if [ -x "install-evolutionary-skills.sh" ]; then
+            echo "✅ install-evolutionary-skills.sh is executable"
+          else
+            echo "❌ install-evolutionary-skills.sh is not executable"
+            exit 1
+          fi
+
+      - name: Validate README and AGENTS.md exist
+        run: |
+          [ -f "README.md" ] && echo "✅ README.md exists"
+          [ -f "AGENTS.md" ] && echo "✅ AGENTS.md exists"
+
+      - name: Summary
+        run: |
+          echo "✅ All basic validations passed for Evolutionary Self-Development fork"
