@@ -127,8 +127,8 @@ class EvolutionHook:
         struggled = task_context.get("struggled", False)
 
         evolution_keywords = {
-            "orchestrate", "evolution", "self-improvement", "улучши цикл",
-            "рефлексия", "аудит", "улучшить", "эволюция"
+            "orchestrate", "evolution", "self-improvement", "improve the cycle",
+            "reflection", "audit", "improve", "evolve",
         }
 
         # Simple rate limiting using history
@@ -164,19 +164,19 @@ class EvolutionHook:
         """
         Generate the prompt/instruction to send to hermes-evolution-orchestrator.
         """
-        task_summary = task_context.get("summary", "Неизвестная задача")
-        complexity = task_context.get("complexity", "неизвестно")
+        task_summary = task_context.get("summary", "Unknown task")
+        complexity = task_context.get("complexity", "unknown")
 
-        prompt = f"""После выполнения задачи:
+        prompt = f"""After completing the task:
 
-Задача: {task_summary}
-Сложность: {complexity}
+Task: {task_summary}
+Complexity: {complexity}
 
-Запусти hermes-evolution-orchestrator.
-Проанализируй результат, обнови ментальные модели и при необходимости
-задействуй другие мета-навыки (ooda-framework, self-improver, loop-auditor и др.).
+Run hermes-evolution-orchestrator.
+Analyze the result, update mental models, and if needed
+engage other meta-skills (ooda-framework, self-improver, loop-auditor, etc.).
 
-Сохрани важные insights в persistent memory.
+Save important insights to persistent memory.
 """
         return prompt.strip()
 
@@ -201,12 +201,12 @@ class EvolutionHook:
         if decision:
             result["orchestrator_prompt"] = self.build_orchestrator_prompt(task_context)
             result["recommended_action"] = (
-                "Запустить hermes-evolution-orchestrator с предоставленным промптом"
+                "Run hermes-evolution-orchestrator with the provided prompt"
             )
             # Record successful trigger in history
             self.record_evolution_event(result)
         else:
-            result["recommended_action"] = "Оркестрация не требуется"
+            result["recommended_action"] = "Orchestration not required"
             # Still record the decision (for rate limiting)
             self.record_evolution_event(result)
 
@@ -239,9 +239,9 @@ class EvolutionHook:
 if __name__ == "__main__":
     hook = EvolutionHook()
 
-    # Пример 1: Сложная задача с созданием навыка
+    # Example 1: Complex task with skill creation
     example_task_1 = {
-        "summary": "Реализовал сложную интеграцию между Hermes и внешним API с несколькими шагами",
+        "summary": "Implemented a complex multi-step integration between Hermes and an external API",
         "complexity": 8,
         "new_skill_created": True,
         "explicit_evolution_request": False,
@@ -250,24 +250,24 @@ if __name__ == "__main__":
         "confidence": 0.75,
     }
 
-    print("=== Пример 1 ===")
+    print("=== Example 1 ===")
     result_1 = hook.trigger_orchestrator(example_task_1)
     print(json.dumps(result_1, indent=2, ensure_ascii=False))
 
-    # Пример 2: Задача с низкой уверенностью
+    # Example 2: Task with low confidence
     example_task_2 = {
-        "summary": "Попытался решить нестандартную проблему, но результат неуверенный",
+        "summary": "Attempted a non-standard problem but the result is uncertain",
         "complexity": 6,
         "new_skill_created": False,
         "struggled": True,
         "confidence": 0.45,
     }
 
-    print("\n=== Пример 2 ===")
+    print("\n=== Example 2 ===")
     result_2 = hook.trigger_orchestrator(example_task_2)
     print(json.dumps(result_2, indent=2, ensure_ascii=False))
 
-    # Демонстрация анализа паттернов
-    print("\n=== Анализ паттернов в истории ===")
+    # Demonstrate pattern analysis
+    print("\n=== Pattern analysis of history ===")
     patterns = hook.analyze_recent_patterns(limit=10)
     print(json.dumps(patterns, indent=2, ensure_ascii=False))

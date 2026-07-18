@@ -1,76 +1,76 @@
-# Фреймворки самооценки и совершенствования
+# Self-Assessment and Improvement Frameworks
 
-**Назначение:** Справочный материал для навыка self-improver. Используется при анализе и улучшении собственных возможностей агента.
+**Purpose:** Reference material for the self-improver skill. Used when analyzing and improving the agent’s own capabilities.
 
-## 1. Фреймворк самооценки (Self-Assessment Framework)
+## 1. Self-Assessment Framework
 
-### 4 вопроса для быстрой диагностики
-1. **Что я делаю хорошо в этой области?** (конкретные примеры)
-2. **Где я систематически теряю качество / эффективность?** (паттерны)
-3. **Какие слепые зоны или неучтённые факторы существуют?**
-4. **Какой самый высокий рычаг воздействия на улучшение?** (high-leverage improvement)
+### 4 questions for quick diagnosis
+1. **What do I do well in this area?** (concrete examples)
+2. **Where do I systematically lose quality / efficiency?** (patterns)
+3. **What blind spots or unaccounted factors exist?**
+4. **What is the highest-leverage improvement?** (high-leverage improvement)
 
-### Уровни зрелости навыка / способности
-- **Level 1 — Базовый**: Выполняет задачу, но требует значительной помощи и часто делает ошибки.
-- **Level 2 — Надёжный**: Стабильно выполняет задачу в знакомых условиях.
-- **Level 3 — Продвинутый**: Хорошо справляется в сложных и нестандартных ситуациях, предвидит проблемы.
-- **Level 4 — Экспертный**: Может обучать других, создавать новые подходы и значительно улучшать процесс.
-- **Level 5 — Мастерский**: Трансформирует область, создаёт новые парадигмы.
+### Skill / Capability Maturity Levels
+- **Level 1 — Basic**: Completes the task but needs significant help and often makes mistakes.
+- **Level 2 — Reliable**: Consistently completes the task in familiar conditions.
+- **Level 3 — Advanced**: Handles complex and non-standard situations well, anticipates problems.
+- **Level 4 — Expert**: Can teach others, create new approaches, and significantly improve the process.
+- **Level 5 — Master**: Transforms the domain and creates new paradigms.
 
-## 2. Фреймворк проектирования улучшений (Improvement Design Framework)
+## 2. Improvement Design Framework
 
-### Шаги
-1. **Определить целевое состояние** (что именно должно измениться и как это будет выглядеть).
-2. **Выявить корневые причины** текущих ограничений (5 Whys или first principles).
-3. **Сгенерировать варианты улучшений** (минимум 3).
-4. **Оценить каждый вариант** по критериям:
-   - Ожидаемое влияние (Impact)
-   - Затраты усилий (Effort)
-   - Риск / побочные эффекты
-   - Скорость получения обратной связи
-5. **Выбрать 1–2 приоритетных улучшения** (правило 80/20).
-6. **Спроектировать маленький эксперимент** (что именно изменить, как измерить результат, за какой срок).
+### Steps
+1. **Define the target state** (what exactly should change and what it should look like).
+2. **Identify root causes** of current limitations (5 Whys or first principles).
+3. **Generate improvement options** (at least 3).
+4. **Evaluate each option** by criteria:
+   - Expected impact
+   - Effort cost
+   - Risk / side effects
+   - Speed of feedback
+5. **Select 1–2 priority improvements** (80/20 rule).
+6. **Design a small experiment** (what to change, how to measure result, over what timeframe).
 
-## 3. Шаблон улучшения навыка (Skill Improvement Template)
+## 3. Skill Improvement Template
 
 ```markdown
-### Улучшение навыка: [Название навыка]
+### Skill Improvement: [Skill Name]
 
-**Текущая проблема / ограничение:**
-[Краткое описание]
+**Current problem / limitation:**
+[Brief description]
 
-**Желаемый результат:**
-[Конкретное описание улучшенного поведения]
+**Desired outcome:**
+[Concrete description of improved behavior]
 
-**Предлагаемое изменение:**
-- В SKILL.md: ...
-- В references/: ...
-- В логике работы: ...
+**Proposed change:**
+- In SKILL.md: ...
+- In references/: ...
+- In working logic: ...
 
-**Обоснование (включая философский слой):**
-[Почему это важно + возможные вторые порядки]
+**Rationale (including philosophical layer):**
+[Why this matters + possible second-order effects]
 
-**План тестирования:**
-- Что будем измерять
-- Какой эксперимент
-- Срок проверки
+**Testing plan:**
+- What we will measure
+- What experiment
+- Review timeframe
 
-**Риски и митигация:**
+**Risks and mitigation:**
 ```
 
-## 4. Интеграция с optimizer-philosopher
+## 4. Integration with optimizer-philosopher
 
-При использовании этого фреймворка всегда задавай вопросы из optimizer-philosopher:
-- Оптимизируем ли мы правильную метрику?
-- Какое влияние улучшение окажет на другие навыки и долгосрочную устойчивость?
-- Соответствует ли изменение более глубоким ценностям (истина, польза, мудрость)?
-- Какие неявные предположения мы делаем о том, что значит "стать лучше"?
+When using this framework, always ask optimizer-philosopher questions:
+- Are we optimizing the right metric?
+- What impact will the improvement have on other skills and long-term sustainability?
+- Does the change align with deeper values (truth, usefulness, wisdom)?
+- What implicit assumptions are we making about what it means to “get better”?
 
-## 5. Принципы эффективного самоулучшения
+## 5. Principles of Effective Self-Improvement
 
-- Делай маленькие, проверяемые шаги.
-- Документируй гипотезы и результаты.
-- Разделяй диагностику и действие.
-- Используй философский слой перед крупными изменениями.
-- Измеряй не только скорость/качество, но и устойчивость + alignment.
-- Регулярно возвращайся к уже улучшенным областям (ретроспектива).
+- Take small, testable steps.
+- Document hypotheses and results.
+- Separate diagnosis from action.
+- Use the philosophical layer before major changes.
+- Measure not only speed/quality, but also resilience + alignment.
+- Regularly revisit already-improved areas (retrospective).

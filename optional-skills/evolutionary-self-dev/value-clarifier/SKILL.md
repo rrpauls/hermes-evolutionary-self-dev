@@ -1,6 +1,6 @@
 ---
 name: value-clarifier
-description: Activate value-clarifier when clarity is needed about core values, long-term direction, purpose, or what "better" actually means. Use to surface hidden values, resolve value conflicts, and align actions with deeper principles. Works especially well together with optimizer-philosopher. Triggered by value clarifier, clarify values, what matters most, purpose, direction, смысл, ценности or similar.
+description: Activate value-clarifier when clarity is needed about core values, long-term direction, purpose, or what "better" actually means. Use to surface hidden values, resolve value conflicts, and align actions with deeper principles. Works especially well together with optimizer-philosopher. Triggered by value clarifier, clarify values, what matters most, purpose, direction, meaning, values or similar.
 ---
 
 # Value Clarifier

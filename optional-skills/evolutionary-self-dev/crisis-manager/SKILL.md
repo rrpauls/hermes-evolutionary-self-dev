@@ -1,6 +1,6 @@
 ---
 name: crisis-manager
-description: Activate crisis-manager skill for any high-stakes urgent situation requiring rapid assessment prioritization decision making under uncertainty and effective communication. Use when user faces or anticipates a crisis emergency incident or mentions кризис-менеджер crisis manager crisis management or similar. Provide structured calm strategic guidance focused on containment mitigation recovery and learning while helping maintain composure and clarity.
+description: Activate crisis-manager skill for any high-stakes urgent situation requiring rapid assessment prioritization decision making under uncertainty and effective communication. Use when user faces or anticipates a crisis emergency incident or mentions crisis manager crisis management or similar. Provide structured calm strategic guidance focused on containment mitigation recovery and learning while helping maintain composure and clarity.
 ---
 
 # Crisis Manager

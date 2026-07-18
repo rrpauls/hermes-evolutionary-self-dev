@@ -24,17 +24,17 @@ echo "  Skills Installer"
 echo "=========================================="
 echo
 
-# Определяем пути
+# Resolve paths
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 SOURCE_DIR="$SCRIPT_DIR/optional-skills/evolutionary-self-dev"
 DEST_DIR="$HOME/.hermes/skills/evolutionary-self-dev"
 AGENTS_SOURCE="$SCRIPT_DIR/AGENTS.md"
 AGENTS_DEST="$HOME/.hermes/AGENTS.md"
 
-# Проверяем наличие исходной директории
+# Check that the source directory exists
 if [ ! -d "$SOURCE_DIR" ]; then
-    echo "❌ Ошибка: Директория с навыками не найдена: $SOURCE_DIR"
-    echo "   Убедись, что ты запускаешь скрипт из корня форка."
+    echo "❌ Error: Skills directory not found: $SOURCE_DIR"
+    echo "   Make sure you are running the script from the fork root."
     exit 1
 fi
 
@@ -66,29 +66,29 @@ else
 fi
 echo
 
-# Список установленных навыков
-echo "📋 Установленные Evolutionary Self-Development навыки:"
+# List installed skills
+echo "📋 Installed Evolutionary Self-Development skills:"
 ls -1 "$DEST_DIR" | sed 's/^/   - /'
 echo
 
-# Рекомендация по интеграции
+# Integration recommendations
 echo "=========================================="
-echo "  Следующие шаги"
+echo "  Next Steps"
 echo "=========================================="
 echo
-echo "1. Перезапусти Hermes (или используй /skills в чате для обновления)."
+echo "1. Restart Hermes (or use /skills in chat to refresh)."
 echo
-echo "2. Файл AGENTS.md уже автоматически скопирован в:"
+echo "2. AGENTS.md has been automatically copied to:"
 echo "   $AGENTS_DEST"
 echo
-echo "   Он содержит готовые инструкции и триггеры для запуска"
-echo "   hermes-evolution-orchestrator после сложных задач."
+echo "   It contains ready-to-use instructions and triggers for running"
+echo "   hermes-evolution-orchestrator after complex tasks."
 echo
-echo "3. Рекомендуемые первые тесты:"
-echo "   - Активируй 'hermes-evolution-orchestrator' вручную"
-echo "   - Попробуй 'ooda-framework' на любой неопределённой задаче"
-echo "   - Запусти 'loop-auditor' для аудита текущего цикла"
+echo "3. Recommended first tests:"
+echo "   - Activate 'hermes-evolution-orchestrator' manually"
+echo "   - Try 'ooda-framework' on any uncertain decision"
+echo "   - Run 'loop-auditor' to audit the current cycle"
 echo
 echo "=========================================="
-echo "  Установка завершена успешно!"
+echo "  Installation completed successfully!"
 echo "=========================================="

@@ -1,116 +1,116 @@
-# Протокол управления PR-кризисом
+# PR Crisis Management Protocol
 
-**Версия:** 1.0  
-**Дата обновления:** 2026-07-18  
-**Назначение:** Детальный справочный материал для навыка crisis-manager при работе с репутационными и публичными кризисами.
+**Version:** 1.0  
+**Last updated:** 2026-07-18  
+**Purpose:** Detailed reference material for the crisis-manager skill when handling reputational and public crises.
 
-## Основные принципы
+## Core Principles
 
-- **Скорость важнее совершенства** в первые часы.
-- **Одна позиция — один голос**. Единый спикер и согласованные сообщения.
-- **Эмпатия + Факты + Конкретные действия** (формула 3R: Regret — Reason — Remedy).
-- Никогда не лгать, не спекулировать и не игнорировать.
-- Внутренняя коммуникация часто приоритетнее внешней в первые часы.
-- Мониторинг в реальном времени обязателен.
-- Каждый кризис — это возможность укрепить доверие и улучшить процессы.
+- **Speed over perfection** in the first hours.
+- **One position — one voice**. A single spokesperson and aligned messages.
+- **Empathy + Facts + Concrete actions** (3R formula: Regret — Reason — Remedy).
+- Never lie, speculate, or ignore.
+- Internal communication often takes priority over external in the first hours.
+- Real-time monitoring is mandatory.
+- Every crisis is an opportunity to strengthen trust and improve processes.
 
-## Подготовка (делать заранее)
+## Preparation (do in advance)
 
-- Создать кризисный штаб (war room) с чёткими ролями.
-- Назначить основного и резервного спикера.
-- Настроить мониторинг упоминаний и тональности с алертами.
-- Подготовить шаблоны заявлений (holding statement, пресс-релизы, посты).
-- Разработать матрицу эскалации и уровни серьёзности кризисов.
-- Провести регулярные тренинги и симуляции.
+- Create a crisis war room with clear roles.
+- Appoint a primary and backup spokesperson.
+- Set up mention and sentiment monitoring with alerts.
+- Prepare statement templates (holding statement, press releases, posts).
+- Build an escalation matrix and crisis severity levels.
+- Run regular training and simulations.
 
-## Протокол по времени (первые 24–48 часов)
+## Timeline Protocol (first 24–48 hours)
 
-### 0–3 часа (Золотой час / Первая реакция)
+### 0–3 hours (Golden hour / First response)
 
-**Цель:** Взять ситуацию под контроль и не допустить неконтролируемого распространения.
+**Goal:** Take control of the situation and prevent uncontrolled spread.
 
-**Чек-лист:**
-- [ ] Зафиксировать факт кризиса и источник
-- [ ] Собрать первичную информацию (что произошло, когда, кто затронут)
-- [ ] Оценить масштаб и потенциальные риски
-- [ ] Уведомить руководство и активировать кризисный штаб
-- [ ] Определить ключевые аудитории
-- [ ] Подготовить и согласовать **первое публичное заявление** (в течение 1–2 часов)
-- [ ] Уведомить сотрудников (внутренняя коммуникация)
-- [ ] Запустить мониторинг в усиленном режиме
+**Checklist:**
+- [ ] Confirm the crisis fact and source
+- [ ] Gather initial information (what happened, when, who is affected)
+- [ ] Assess scale and potential risks
+- [ ] Notify leadership and activate the crisis war room
+- [ ] Identify key audiences
+- [ ] Prepare and approve the **first public statement** (within 1–2 hours)
+- [ ] Notify employees (internal communication)
+- [ ] Launch monitoring in intensified mode
 
-**Содержание первого заявления (минимум):**
-- Эмпатия к пострадавшим
-- Краткое описание известных фактов
-- Что компания делает прямо сейчас
-- Когда ожидать следующего обновления
+**Minimum content of the first statement:**
+- Empathy for those affected
+- Brief description of known facts
+- What the company is doing right now
+- When to expect the next update
 
-### 3–12 часов
+### 3–12 hours
 
-**Цель:** Полная картина ситуации и выбор стратегии.
+**Goal:** Full picture of the situation and strategy selection.
 
-**Действия:**
-1. Картирование распространения (СМИ, соцсети, поиск, Telegram и др.).
-2. Анализ типа кризиса и степени ответственности компании.
-3. Выбор стратегии реагирования (по SCCT):
-   - **Отрицание** (если обвинения ложны)
-   - **Уменьшение вины** (оправдание / объяснение контекста)
-   - **Восстановление** (извинения + компенсация + корректирующие действия) — наиболее эффективно в большинстве случаев
-4. Формулировка ключевых сообщений.
-5. Подготовка плана коммуникаций по каналам и аудиториям.
+**Actions:**
+1. Map spread (media, social networks, search, messaging apps, etc.).
+2. Analyze crisis type and degree of company responsibility.
+3. Choose a response strategy (per SCCT):
+   - **Denial** (if accusations are false)
+   - **Diminish** (justification / contextual explanation)
+   - **Rebuild** (apology + compensation + corrective actions) — most effective in most cases
+4. Formulate key messages.
+5. Prepare a communications plan by channel and audience.
 
-### 12–24 часа
+### 12–24 hours
 
-**Цель:** Стабилизация и активное управление нарративом.
+**Goal:** Stabilization and active narrative management.
 
-**Действия:**
-- Публикация официальной позиции на сайте и в ключевых каналах.
-- Регулярные обновления (даже если «новостей нет»).
-- Работа с misinformation и негативом.
-- Личные коммуникации с ключевыми стейкхолдерами.
-- Координация с юридическим отделом.
-- Подготовка материалов для СМИ (при необходимости).
+**Actions:**
+- Publish the official position on the website and key channels.
+- Regular updates (even if there is “no news”).
+- Address misinformation and negativity.
+- Personal communications with key stakeholders.
+- Coordination with the legal team.
+- Prepare materials for media (if needed).
 
-### 24–48 часов и далее
+### 24–48 hours and beyond
 
-- Продолжение мониторинга и корректировки сообщений.
-- Реализация обещанных действий.
-- Подготовка к долгосрочной коммуникации (отчёты, кейсы исправлений).
+- Continue monitoring and message adjustment.
+- Deliver on promised actions.
+- Prepare for long-term communication (reports, remediation case studies).
 
-## Пост-кризисный разбор (обязательно)
+## Post-Crisis Review (mandatory)
 
-Проводится в течение 7–14 дней после стабилизации.
+Conducted within 7–14 days after stabilization.
 
-**Обязательные блоки разбора:**
-- Полная хронология событий с таймингом
-- Оценка скорости и качества реакции на каждом этапе
-- Что сработало хорошо
-- Что не сработало / вызвало проблемы
-- Пробелы в подготовке и инфраструктуре
-- Оценка работы каждой команды
-- Конкретный план улучшений на следующие 6–12 месяцев
-- Обновление протокола и шаблонов
+**Required review blocks:**
+- Full event chronology with timing
+- Assessment of response speed and quality at each stage
+- What worked well
+- What did not work / caused problems
+- Gaps in preparation and infrastructure
+- Assessment of each team’s performance
+- Concrete improvement plan for the next 6–12 months
+- Protocol and template updates
 
-## Полезные фреймворки
+## Useful Frameworks
 
-### Формула 3R (для большинства публичных кризисов)
-1. **Regret** (Сожаление / Эмпатия)
-2. **Reason** (Причина — что произошло на самом деле)
-3. **Remedy** (Решение — что мы делаем, чтобы исправить)
+### 3R Formula (for most public crises)
+1. **Regret** (Empathy / apology)
+2. **Reason** (Cause — what actually happened)
+3. **Remedy** (Solution — what we are doing to fix it)
 
-### Уровни серьёзности (рекомендуется иметь в компании)
-- **Level 1** — Локальная жалоба / негатив в соцсетях (обрабатывает поддержка + PR)
-- **Level 2** — Вирусный негатив, запросы СМИ (активируется штаб)
-- **Level 3** — Полноценный репутационный кризис с угрозой бизнесу (полный war room + топ-менеджмент)
+### Severity Levels (recommended for every company)
+- **Level 1** — Local complaint / social media negativity (handled by support + PR)
+- **Level 2** — Viral negativity, media inquiries (war room activates)
+- **Level 3** — Full reputational crisis with business threat (full war room + top management)
 
-## Примечания для crisis-manager
+## Notes for crisis-manager
 
-При активации этого навыка в контексте PR-кризиса:
-- Используй структуру из основного SKILL.md.
-- Ссылайся на этот протокол для тайминга и конкретных шагов.
-- Всегда предлагай пользователю структурированный план с чёткими временными рамками.
-- Помогай сохранять спокойствие и фокус на контролируемых действиях.
+When activating this skill in a PR-crisis context:
+- Use the structure from the main SKILL.md.
+- Refer to this protocol for timing and concrete steps.
+- Always offer the user a structured plan with clear time frames.
+- Help maintain calm and focus on controllable actions.
 
 ---
 
-*Протокол основан на лучших практиках российских и международных агентств, SCCT, SERM-подходах и реальных кейсах 2024–2026 годов.*
+*Protocol based on best practices from Russian and international agencies, SCCT, SERM approaches, and real cases from 2024–2026.*

@@ -1,86 +1,86 @@
-# Методология системной динамики (System Dynamics)
+# System Dynamics Methodology
 
-**Версия:** 1.0  
-**Дата:** 2026-07-18  
-**Назначение:** Справочный материал для глубокого системного анализа в сочетании с философским и оптимизационным мышлением.
+**Version:** 1.0  
+**Date:** 2026-07-18  
+**Purpose:** Reference material for deep systems analysis combined with philosophical and optimization thinking.
 
-## 1. Основная идея
+## 1. Core Idea
 
-**Системная динамика** — это методология моделирования и понимания поведения сложных систем во времени через их структуру.
+**System dynamics** is a methodology for modeling and understanding the behavior of complex systems over time through their structure.
 
-**Ключевой принцип (Jay Forrester):**  
-**«Структура системы определяет её поведение»**.
+**Key principle (Jay Forrester):**  
+**“The structure of the system determines its behavior.”**
 
-Проблемы и нежелательное поведение системы возникают прежде всего из-за внутренних петель обратной связи, накоплений и задержек, а не только из-за внешних событий.
+Problems and undesirable system behavior arise primarily from internal feedback loops, accumulations, and delays — not only from external events.
 
-## 2. Базовые элементы модели
+## 2. Basic Model Elements
 
-### Stocks (Накопители / Запасы)
-- То, что накапливается или уменьшается со временем.
-- Примеры: репутация, деньги, сотрудники, доверие, загрязнение, знания.
+### Stocks (Accumulations / Inventories)
+- What accumulates or decreases over time.
+- Examples: reputation, money, employees, trust, pollution, knowledge.
 
-### Flows (Потоки)
-- Скорости изменения запасов (приток и отток).
-- Примеры: приток новых клиентов, отток сотрудников, скорость выбросов CO₂.
+### Flows
+- Rates of change of stocks (inflows and outflows).
+- Examples: inflow of new customers, employee attrition, CO₂ emission rate.
 
-### Feedback Loops (Петли обратной связи)
-- **Reinforcing Loops (R)** — усиливающие (экспоненциальный рост или коллапс).
-- **Balancing Loops (B)** — уравновешивающие (стабилизация, цель-ориентированное поведение).
+### Feedback Loops
+- **Reinforcing Loops (R)** — amplifying (exponential growth or collapse).
+- **Balancing Loops (B)** — stabilizing (goal-seeking behavior).
 
-### Дополнительные элементы
-- **Delays** (Задержки) — время между действием и последствием.
-- **Nonlinearities** — нелинейные зависимости.
-- **Auxiliary variables** — вспомогательные переменные и таблицы.
+### Additional Elements
+- **Delays** — time between action and consequence.
+- **Nonlinearities** — nonlinear relationships.
+- **Auxiliary variables** — helper variables and lookup tables.
 
-## 3. Процесс моделирования (итеративный цикл)
+## 3. Modeling Process (Iterative Cycle)
 
 1. **Problem Articulation**  
-   Чёткое определение проблемы через поведение во времени (reference modes).
+   Clear definition of the problem through behavior over time (reference modes).
 
 2. **Conceptualization**  
-   Построение Causal Loop Diagrams и Stock-Flow Diagrams.
+   Building Causal Loop Diagrams and Stock-Flow Diagrams.
 
 3. **Formulation**  
-   Количественная спецификация модели (уравнения).
+   Quantitative model specification (equations).
 
 4. **Testing & Validation**  
-   Структурные тесты, поведенческие тесты, sensitivity analysis.
+   Structural tests, behavioral tests, sensitivity analysis.
 
 5. **Policy Design & Evaluation**  
-   Проектирование и тестирование интервенций.
+   Designing and testing interventions.
 
 6. **Implementation & Learning**  
-   Внедрение и извлечение уроков.
+   Deployment and learning extraction.
 
-## 4. Как системная динамика усиливает философско-оптимизационный анализ
+## 4. How System Dynamics Strengthens Philosophical-Optimization Analysis
 
-- Позволяет **визуализировать и моделировать** вторые и третьи порядки последствий.
-- Помогает выявлять **policy resistance** (сопротивление политикам) и системные ловушки.
-- Даёт мощный язык для обсуждения **trade-off** и долгосрочных эффектов.
-- Отлично сочетается с первым принципами и системным мышлением.
+- Allows you to **visualize and model** second- and third-order consequences.
+- Helps reveal **policy resistance** and system traps.
+- Provides a powerful language for discussing **trade-offs** and long-term effects.
+- Pairs well with first principles and systems thinking.
 
-**Рекомендация при использовании optimizer-philosopher:**
-- При анализе сложных решений всегда спрашивать: «Какие петли обратной связи здесь действуют?» и «Какие накопители и задержки влияют на поведение системы?»
+**Recommendation when using optimizer-philosopher:**
+- When analyzing complex decisions, always ask: “What feedback loops are active here?” and “Which stocks and delays shape the system’s behavior?”
 
-## 5. Практическое применение в контексте навыков
+## 5. Practical Application in Skill Context
 
-- **Репутационные кризисы** (crisis-manager): моделирование петель "негатив → снижение доверия → усиление негатива".
-- **Самоулучшение агента** (self-improver): моделирование долгосрочного эффекта улучшений навыков и петель обучения.
-- **Стратегические решения**: анализ reinforcing и balancing loops в бизнес-моделях и политиках.
+- **Reputational crises** (crisis-manager): modeling loops of “negativity → declining trust → more negativity.”
+- **Agent self-improvement** (self-improver): modeling long-term effects of skill improvements and learning loops.
+- **Strategic decisions**: analyzing reinforcing and balancing loops in business models and policies.
 
-## 6. Инструменты (рекомендации 2026)
+## 6. Tools (2026 Recommendations)
 
-- **Vensim** / **Stella** — профессиональные инструменты.
-- **Python (PySD)** — для интеграции с ИИ и автоматизации.
-- **AnyLogic** — когда нужно комбинировать с агентным моделированием.
+- **Vensim** / **Stella** — professional tools.
+- **Python (PySD)** — for AI integration and automation.
+- **AnyLogic** — when combining with agent-based modeling.
 
-## 7. Ключевые источники
+## 7. Key Sources
 
 - Jay W. Forrester — *Industrial Dynamics* (1961)
-- John D. Sterman — *Business Dynamics: Systems Thinking and Modeling for a Complex World* (2000) — лучший учебник
+- John D. Sterman — *Business Dynamics: Systems Thinking and Modeling for a Complex World* (2000) — best textbook
 - Donella H. Meadows — *Thinking in Systems* (2008)
-- *Limits to Growth* (1972) — классическая модель World3
+- *Limits to Growth* (1972) — classic World3 model
 
 ---
 
-*Этот материал предназначен для использования вместе с навыками optimizer-philosopher, crisis-manager и self-improver.*
+*This material is intended for use with the optimizer-philosopher, crisis-manager, and self-improver skills.*

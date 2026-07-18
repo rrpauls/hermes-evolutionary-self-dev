@@ -1,6 +1,6 @@
 ---
 name: self-observer
-description: Activate self-observer for ongoing, honest monitoring of internal states, thought patterns, emotional responses, and behavioral tendencies. Focus on noticing without immediate judgment. Works as input for self-improver and mental-model-updater. Triggered by self observer, self monitoring, notice patterns, внутреннее наблюдение or similar.
+description: Activate self-observer for ongoing, honest monitoring of internal states, thought patterns, emotional responses, and behavioral tendencies. Focus on noticing without immediate judgment. Works as input for self-improver and mental-model-updater. Triggered by self observer, self monitoring, notice patterns, internal observation or similar.
 ---
 
 # Self Observer

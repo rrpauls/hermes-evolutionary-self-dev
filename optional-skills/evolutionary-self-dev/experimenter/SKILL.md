@@ -1,6 +1,6 @@
 ---
 name: experimenter
-description: Activate experimenter when designing and running small, safe experiments to test improvements in skills, behavior, workflows or mental models. Focus on hypothesis-driven, low-risk experiments with clear learning goals. Works together with self-improver and value-clarifier. Triggered by experimenter, run experiment, test improvement, safe experiment, гипотеза, эксперимент or similar.
+description: Activate experimenter when designing and running small, safe experiments to test improvements in skills, behavior, workflows or mental models. Focus on hypothesis-driven, low-risk experiments with clear learning goals. Works together with self-improver and value-clarifier. Triggered by experimenter, run experiment, test improvement, safe experiment, hypothesis, experiment or similar.
 ---
 
 # Experimenter

@@ -1,6 +1,6 @@
 ---
 name: system-dynamics-thinker
-description: Activate system-dynamics-thinker when deep understanding of complex system behavior over time is needed. Use for analyzing feedback loops, stocks and flows, delays, policy resistance, and designing interventions in business, social, environmental or personal systems. Combine with optimizer-philosopher for philosophical depth and with crisis-manager for crisis dynamics. Triggered by system dynamics, системная динамика, feedback loops, stocks and flows, системное моделирование or similar.
+description: Activate system-dynamics-thinker when deep understanding of complex system behavior over time is needed. Use for analyzing feedback loops, stocks and flows, delays, policy resistance, and designing interventions in business, social, environmental or personal systems. Combine with optimizer-philosopher for philosophical depth and with crisis-manager for crisis dynamics. Triggered by system dynamics, feedback loops, stocks and flows, systems modeling or similar.
 ---
 
 # System Dynamics Thinker
@@ -31,7 +31,7 @@ This skill engages when the query involves understanding or improving the long-t
    - Map major **feedback loops** (reinforcing and balancing).  
    - Highlight significant **delays**.
 
-Используй `references/first-model-guide.md` как пошаговый шаблон при построении первой модели.
+Use `references/first-model-guide.md` as a step-by-step template when building your first model.
 
 3. **Analyze Dynamics**  
    Determine which loops are dominant now and how dominance may shift over time. Explain the current and likely future behavior.

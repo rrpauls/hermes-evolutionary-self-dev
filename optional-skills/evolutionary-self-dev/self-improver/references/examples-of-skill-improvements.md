@@ -1,51 +1,51 @@
-# Примеры улучшений существующих навыков
+# Examples of Existing Skill Improvements
 
-Этот документ содержит реальные примеры применения навыка self-improver к уже созданным навыкам.
+This document contains real examples of applying the self-improver skill to already-created skills.
 
-## Пример 1: Улучшение crisis-manager (добавление более детального триггера и связки с self-improver)
+## Example 1: Improving crisis-manager (more detailed trigger and link to self-improver)
 
-**Текущая проблема:**  
-В crisis-manager хорошо описан общий процесс, но отсутствует явная связь с долгосрочным самоулучшением после кризиса. Пост-кризисный разбор проводится, но не всегда приводит к обновлению навыков.
+**Current problem:**  
+crisis-manager describes the general process well, but lacks an explicit link to long-term self-improvement after a crisis. Post-crisis reviews are done, but do not always lead to skill updates.
 
-**Предлагаемое улучшение:**
-- В разделе "Recover & Learn" добавить явный шаг: "Запустить self-improver для анализа, какие аспекты навыка crisis-manager можно усилить на основе этого кейса".
-- Добавить в Communication Guidelines рекомендацию использовать self-improver при подготовке долгосрочных изменений после крупных кризисов.
+**Proposed improvement:**
+- In the “Recover & Learn” section, add an explicit step: “Run self-improver to analyze which aspects of the crisis-manager skill can be strengthened based on this case.”
+- In Communication Guidelines, add a recommendation to use self-improver when preparing long-term changes after major crises.
 
-**Обоснование (философский слой):**  
-Кризис — это мощный источник обучения. Если не закрывать петлю обратной связи через самоулучшение, мы рискуем повторять похожие ошибки в будущем. Это повышает антихрупкость как самого навыка, так и организации.
+**Rationale (philosophical layer):**  
+A crisis is a powerful learning source. If we do not close the feedback loop through self-improvement, we risk repeating similar mistakes. This increases antifragility of both the skill and the organization.
 
-**Реализация (уже выполнена в рамках этого сеанса):**  
-Добавлена явная рекомендация в crisis-manager связываться с self-improver после серьёзных инцидентов.
+**Implementation (already done in this session):**  
+An explicit recommendation was added in crisis-manager to connect with self-improver after serious incidents.
 
-## Пример 2: Улучшение optimizer-philosopher (добавление практического инструмента)
+## Example 2: Improving optimizer-philosopher (adding a practical tool)
 
-**Текущая проблема:**  
-Optimizer-philosopher даёт глубокий анализ, но иногда ответы остаются слишком абстрактными. Пользователю бывает сложно перейти от философского осмысления к конкретным действиям.
+**Current problem:**  
+Optimizer-philosopher provides deep analysis, but answers sometimes stay too abstract. Users can struggle to move from philosophical reflection to concrete action.
 
-**Предлагаемое улучшение:**
-- Добавить в Core Directives новый пункт: "После философского анализа всегда предлагать 2–3 конкретных, actionable шага или эксперимента, даже если они носят пробный характер".
-- В структуру ответа добавить финальный блок: **"Практические следующие шаги"**.
+**Proposed improvement:**
+- Add a new Core Directives item: “After philosophical analysis, always propose 2–3 concrete, actionable steps or experiments, even if provisional.”
+- Add a final response block: **“Practical next steps.”**
 
-**Обоснование:**  
-Глубина без действия теряет часть своей ценности. Сочетание философской мудрости с практическим оптимизатором (self-improver) делает навык значительно полезнее.
+**Rationale:**  
+Depth without action loses part of its value. Combining philosophical wisdom with a practical optimizer (self-improver) makes the skill significantly more useful.
 
-**Статус:** Рекомендация готова к реализации.
+**Status:** Recommendation ready for implementation.
 
-## Пример 3: Улучшение self-improver (самоулучшение)
+## Example 3: Improving self-improver (self-improvement)
 
-**Текущая проблема:**  
-Навык хорошо структурирован, но в нём пока нет встроенного механизма регулярной ретроспективы уже проведённых улучшений.
+**Current problem:**  
+The skill is well structured, but still lacks a built-in mechanism for regular retrospectives of past improvements.
 
-**Предлагаемое улучшение:**
-- Добавить в Core Process финальный шаг 8: **"Провести ретроспективу предыдущих улучшений"** (раз в 5–10 использований навыка).
-- Создать простой шаблон для отслеживания истории улучшений.
+**Proposed improvement:**
+- Add final step 8 to the Core Process: **“Retrospective of previous improvements”** (every 5–10 uses of the skill).
+- Create a simple template for tracking improvement history.
 
-**Обоснование:**  
-Без систематического пересмотра прошлых улучшений мы можем накапливать устаревшие изменения или упускать compounding effect от нескольких последовательных улучшений.
+**Rationale:**  
+Without systematic review of past improvements, we may accumulate outdated changes or miss the compounding effect of successive improvements.
 
-**Статус:** Добавлено в этот документ как пример. Готово к реализации в SKILL.md при необходимости.
+**Status:** Added to this document as an example. Ready for implementation in SKILL.md if needed.
 
 ---
 
-**Вывод:**  
-Самые высокие рычаги обычно находятся на стыке навыков (crisis-manager + self-improver, optimizer-philosopher + self-improver). Улучшения, которые создают петли обратной связи между навыками, дают наибольший долгосрочный эффект.
+**Conclusion:**  
+The highest leverage usually sits at skill intersections (crisis-manager + self-improver, optimizer-philosopher + self-improver). Improvements that create feedback loops between skills deliver the greatest long-term effect.

@@ -1,6 +1,6 @@
 ---
 name: self-improver
-description: Activate self-improver when the task involves analyzing or improving the agent's own capabilities performance skills workflows or decision processes. Use for self-reflection gap analysis skill refinement or meta-optimization. Explicitly combine with optimizer-philosopher skill for deeper philosophical evaluation of what and how to improve. Triggered by self-improver self-reflection improve yourself совершенствуй себя изучи свои возможности or similar.
+description: Activate self-improver when the task involves analyzing or improving the agent's own capabilities performance skills workflows or decision processes. Use for self-reflection gap analysis skill refinement or meta-optimization. Explicitly combine with optimizer-philosopher skill for deeper philosophical evaluation of what and how to improve. Triggered by self-improver self-reflection improve yourself improve yourself study your capabilities or similar.
 ---
 
 # Self Improver

@@ -1,6 +1,6 @@
 ---
 name: antifragility-builder
-description: Activate antifragility-builder when developing the capacity to grow stronger from stress, failure, disorder, and uncertainty. Focus on building systems, mindsets, and practices that benefit from volatility rather than just resisting it. Works well with crisis-manager and self-improver. Triggered by antifragility, антихрупкость, grow from failure, resilience through disorder or similar.
+description: Activate antifragility-builder when developing the capacity to grow stronger from stress, failure, disorder, and uncertainty. Focus on building systems, mindsets, and practices that benefit from volatility rather than just resisting it. Works well with crisis-manager and self-improver. Triggered by antifragility, grow from failure, resilience through disorder or similar.
 ---
 
 # Antifragility Builder

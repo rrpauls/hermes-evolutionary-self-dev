@@ -1,6 +1,6 @@
 ---
 name: mental-model-updater
-description: Activate mental-model-updater when new insights, experiences, or experimental results need to be integrated into existing mental models, skills, or knowledge structures. Focus on synthesis, updating assumptions, and reducing outdated beliefs. Works closely with self-improver and experimenter. Triggered by mental model update, integrate insights, update assumptions, синтез, обновить модель or similar.
+description: Activate mental-model-updater when new insights, experiences, or experimental results need to be integrated into existing mental models, skills, or knowledge structures. Focus on synthesis, updating assumptions, and reducing outdated beliefs. Works closely with self-improver and experimenter. Triggered by mental model update, integrate insights, update assumptions, synthesis, update model or similar.
 ---
 
 # Mental Model Updater

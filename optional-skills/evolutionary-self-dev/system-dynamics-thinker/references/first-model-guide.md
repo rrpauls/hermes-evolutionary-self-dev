@@ -1,57 +1,57 @@
-# Практический гайд: Как построить свою первую модель системной динамики
+# Practical Guide: How to Build Your First System Dynamics Model
 
-## Шаг 1: Выбери проблему
-Выбери проблему, где поведение **меняется со временем** и есть обратные связи.
+## Step 1: Choose a Problem
+Choose a problem where behavior **changes over time** and feedback is present.
 
-Примеры:
-- Почему репутация компании падает после скандала и медленно восстанавливается?
-- Почему сотрудники увольняются, несмотря на повышение зарплат?
-- Динамика личного обучения и выгорания.
+Examples:
+- Why does company reputation fall after a scandal and recover slowly?
+- Why do employees leave despite salary increases?
+- Dynamics of personal learning and burnout.
 
-## Шаг 2: Нарисуй Reference Mode
-Нарисуй график ключевых переменных во времени (как минимум 2–3 переменные).
+## Step 2: Draw the Reference Mode
+Draw a chart of key variables over time (at least 2–3 variables).
 
-Пример для репутационного кризиса:
-- Уровень доверия падает резко, потом медленно растёт.
-- Количество негативных публикаций растёт, потом падает.
+Example for a reputational crisis:
+- Trust level falls sharply, then rises slowly.
+- Number of negative publications rises, then falls.
 
-## Шаг 3: Определи ключевые Stocks
-Что накапливается?
-- Доверие / Репутация
-- Негативная информация в медиа и соцсетях
-- Внутреннее напряжение в команде
+## Step 3: Identify Key Stocks
+What accumulates?
+- Trust / Reputation
+- Negative information in media and social networks
+- Internal team tension
 
-## Шаг 4: Определи Flows
-Что меняет эти stocks?
-- Приток негатива (скорость появления новых публикаций)
-- Отток негатива (скорость забывания / опровержения)
-- Скорость восстановления доверия
+## Step 4: Identify Flows
+What changes these stocks?
+- Negative inflow (rate of new publications)
+- Negative outflow (rate of forgetting / debunking)
+- Trust recovery rate
 
-## Шаг 5: Построй основные петли обратной связи
+## Step 5: Build the Main Feedback Loops
 
-**Пример петель в репутационном кризисе:**
+**Example loops in a reputational crisis:**
 
-**R1 — Усиливающая петля паники:**
-Негатив → Снижение доверия → Уход клиентов/партнёров → Ещё больше негатива
+**R1 — Reinforcing panic loop:**
+Negativity → Declining trust → Customer/partner churn → Even more negativity
 
-**B1 — Уравновешивающая петля восстановления:**
-Доверие низкое → Компания начинает активно коммуницировать и исправлять → Доверие начинает расти
+**B1 — Balancing recovery loop:**
+Low trust → Company actively communicates and fixes issues → Trust begins to rise
 
-**B2 — Петля с задержкой:**
-Компания запускает программу исправлений → Проходит время (задержка) → Результаты становятся видимыми → Доверие растёт
+**B2 — Loop with delay:**
+Company launches remediation program → Time passes (delay) → Results become visible → Trust rises
 
-## Шаг 6: Сформулируй динамическую гипотезу
-"Репутационный кризис развивается быстро из-за reinforcing петли негативной информации, но восстановление идёт медленно из-за задержек в видимых результатах и доверия."
+## Step 6: Formulate a Dynamic Hypothesis
+“A reputational crisis develops quickly because of a reinforcing loop of negative information, but recovery is slow because of delays in visible results and trust.”
 
-## Шаг 7: Начни моделировать (инструменты)
-- Нарисуй в Insight Maker (онлайн, бесплатно)
-- Или используй Vensim / Python (PySD)
+## Step 7: Start Modeling (Tools)
+- Draw in Insight Maker (online, free)
+- Or use Vensim / Python (PySD)
 
-## Полезные вопросы при моделировании
-- Какие петли сейчас доминируют?
-- Где находятся самые высокие рычаги воздействия (leverage points)?
-- Какие unintended consequences могут возникнуть от наших интервенций?
+## Useful Modeling Questions
+- Which loops are dominant right now?
+- Where are the highest-leverage intervention points?
+- What unintended consequences might our interventions create?
 
 ---
 
-Используй этот гайд вместе с навыком **system-dynamics-thinker**.
+Use this guide together with the **system-dynamics-thinker** skill.

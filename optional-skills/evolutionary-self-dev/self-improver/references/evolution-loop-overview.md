@@ -1,18 +1,18 @@
-# Эволюционная петля саморазвития (Self-Evolution Loop)
+# Self-Evolution Loop
 
-**Версия:** 1.1 (улучшена с применением Теории игр и Теории систем)  
-**Дата:** 2026-07-18
+**Version:** 1.1 (improved with Game Theory and Systems Theory)  
+**Date:** 2026-07-18
 
-Это замкнутая система навыков, обеспечивающая осознанное, устойчивое и направленное эволюционное развитие агента.
+This is a closed system of skills that enables conscious, sustainable, and directed evolutionary development of the agent.
 
-## Общая структура петли
+## Overall Loop Structure
 
-Петля состоит из двух взаимосвязанных контуров:
+The loop consists of two interconnected circuits:
 
-1. **Контур осознания и направления** — определяет *что* и *зачем* улучшать.
-2. **Контур экспериментирования и интеграции** — отвечает за *как* проверять и усваивать изменения.
+1. **Awareness and Direction Circuit** — determines *what* and *why* to improve.
+2. **Experimentation and Integration Circuit** — handles *how* to test and absorb changes.
 
-### Основной цикл работы
+### Main Work Cycle
 
 ```
 Self-Observer 
@@ -26,50 +26,50 @@ Experimenter
 Mental-Model-Updater 
       ↓
 Antifragility-Builder 
-      ↑ (обратная связь)
+      ↑ (feedback)
 ```
 
-## Роль каждого навыка
+## Role of Each Skill
 
-| Навык                        | Основная функция в петле                          | Тип вклада             |
+| Skill                        | Primary function in the loop                      | Contribution type      |
 |-----------------------------|---------------------------------------------------|------------------------|
-| **Self-Observer**           | Чистое наблюдение за внутренними паттернами       | Входные данные         |
-| **Self-Improver**           | Анализ разрывов и генерация идей улучшений        | Диагностика            |
-| **Value-Clarifier**         | Прояснение ценностей и долгосрочного направления  | "Зачем" и "Куда"       |
-| **Optimizer-Philosopher**   | Глубокий анализ trade-off, смысла и последствий   | Мудрость и качество    |
-| **System-Dynamics-Thinker** | Анализ системных структур и долгосрочной динамики | Системное мышление     |
-| **Experimenter**            | Проектирование и проведение безопасных экспериментов | Проверка гипотез     |
-| **Mental-Model-Updater**    | Интеграция результатов в обновлённые модели       | Замыкание обучения     |
-| **Antifragility-Builder**   | Развитие способности расти через стресс и неудачи | Устойчивость эволюции  |
+| **Self-Observer**           | Clean observation of internal patterns            | Input data             |
+| **Self-Improver**           | Gap analysis and generation of improvement ideas  | Diagnosis              |
+| **Value-Clarifier**         | Clarifying values and long-term direction         | “Why” and “Where”      |
+| **Optimizer-Philosopher**   | Deep analysis of trade-offs, meaning, consequences| Wisdom and quality     |
+| **System-Dynamics-Thinker** | Analysis of system structures and long-term dynamics | Systems thinking    |
+| **Experimenter**            | Designing and running safe experiments            | Hypothesis testing     |
+| **Mental-Model-Updater**    | Integrating results into updated models           | Closing the learning loop |
+| **Antifragility-Builder**   | Growing capacity through stress and failure       | Evolution resilience   |
 
-## Ключевые свойства петли (v1.1)
+## Key Loop Properties (v1.1)
 
-- **Замкнутость** — каждый этап имеет чёткий вход и выход.
-- **Самоусиление** — регулярное прохождение петли усиливает агента.
-- **Антихрупкость** — система становится сильнее от неудач и неопределённости.
-- **Направленность** — улучшения происходят в соответствии с ценностями.
-- **Механизм дизайна** — правила взаимодействия между навыками сознательно проектируются (особенно связь Value-Clarifier ↔ Experimenter).
-- **Эволюционная динамика** — успешные паттерны взаимодействия навыков усиливаются со временем.
-- **Минимализм** — каждый навык выполняет узкую, но критически важную функцию.
+- **Closedness** — each stage has a clear input and output.
+- **Self-reinforcement** — regular loop cycles strengthen the agent.
+- **Antifragility** — the system grows stronger from failures and uncertainty.
+- **Directionality** — improvements align with values.
+- **Mechanism design** — interaction rules between skills are deliberately designed (especially Value-Clarifier ↔ Experimenter).
+- **Evolutionary dynamics** — successful skill-interaction patterns strengthen over time.
+- **Minimalism** — each skill performs a narrow but critical function.
 
-## Как работает петля на практике
+## How the Loop Works in Practice
 
-1. **Наблюдение** — Self-Observer фиксирует повторяющиеся паттерны.
-2. **Рефлексия и направление** — Self-Improver + Value-Clarifier определяют приоритеты.
-3. **Глубокий анализ** — Optimizer-Philosopher и System-Dynamics-Thinker оценивают последствия.
-4. **Эксперимент** — Experimenter проверяет идеи небольшими безопасными тестами.
-5. **Интеграция** — Mental-Model-Updater обновляет внутренние модели.
-6. **Укрепление** — Antifragility-Builder делает систему более устойчивой к будущим вызовам.
-7. **Обратная связь** — результаты возвращаются в начало петли.
+1. **Observation** — Self-Observer captures recurring patterns.
+2. **Reflection and direction** — Self-Improver + Value-Clarifier set priorities.
+3. **Deep analysis** — Optimizer-Philosopher and System-Dynamics-Thinker evaluate consequences.
+4. **Experiment** — Experimenter validates ideas with small, safe tests.
+5. **Integration** — Mental-Model-Updater updates internal models.
+6. **Strengthening** — Antifragility-Builder makes the system more resilient to future challenges.
+7. **Feedback** — results return to the start of the loop.
 
-## Ключевые улучшения v1.1 (на основе Теории игр и Теории систем)
+## Key Improvements in v1.1 (based on Game Theory and Systems Theory)
 
-- Добавлен **Value Alignment Check** между Value-Clarifier и Experimenter (Mechanism Design).
-- Усилена **эволюционная динамика** — успешные взаимодействия навыков должны усиливаться.
-- **Loop-Auditor** теперь анализирует петлю как повторяющуюся игру + ищет leverage points.
-- Улучшена обратная связь от Mental-Model-Updater к Value-Clarifier.
-- Антихрупкость распространена на уровень всей петли.
+- Added a **Value Alignment Check** between Value-Clarifier and Experimenter (Mechanism Design).
+- Strengthened **evolutionary dynamics** — successful skill interactions should reinforce over time.
+- **Loop-Auditor** now analyzes the loop as a repeated game and looks for leverage points.
+- Improved feedback from Mental-Model-Updater to Value-Clarifier.
+- Antifragility extended to the level of the entire loop.
 
-## Назначение
+## Purpose
 
-Эта петля переводит агента от **фрагментарного улучшения** к **осознанной эволюции** — когда развитие становится системным, направленным, антихрупким и способным к самоусилению.
+This loop moves the agent from **fragmented improvement** to **conscious evolution** — where development becomes systematic, directed, antifragile, and capable of self-reinforcement.
