@@ -2,52 +2,52 @@
 """
 evolution-hook.py
 
-Starter template for deeper automation of Evolutionary Self-Development in Hermes.
+Smart trigger for the ESRA (Evolutionary Self-Recursive Architecture) process inside Hermes.
 
 Purpose:
 - Automatically detect when Hermes has completed a complex task
   or created/improved a skill.
 - Decide whether to trigger `hermes-evolution-orchestrator`.
-- Provide a foundation for future integration (via sub-agents, tools,
-  or post-processing hooks).
+- Provide a clean foundation for future deeper integration
+  (native Hermes tool, sub-agent, or post-processing hook).
 
-This is currently a **skeleton / design document in code form**.
-Real integration will depend on Hermes internals (tool system, sub-agents,
-event hooks, or Skills Hub).
+This script is designed to be called after significant work.
+It can also serve as a reference for native Hermes event hooks.
 
-Usage ideas:
-- Run as a background watcher (monitor ~/.hermes/skills/ for new files)
-- Integrate as a custom Hermes tool
-- Use as a post-task hook in AGENTS.md / workspace instructions
-- Extend into a full sub-agent
+Usage:
+- Manual: python tools/evolution-hook.py
+- From AGENTS.md / post-task instructions
+- Future: as a native Hermes tool or background watcher
 
-Author: Evolutionary Self-Development Architecture
+Author: ESRA / hermes-evolutionary-self-dev
 """
 
 from __future__ import annotations
 import os
 import json
 from pathlib import Path
-from typing import Any, Dict, Optional
+from typing import Any, Dict, Optional, List
 from datetime import datetime
+from collections import Counter
 
 
 class EvolutionHook:
     """
-    Main class responsible for deciding when and how to trigger
-    evolutionary self-development after Hermes activity.
+    Decides when and how to trigger the ESRA orchestrator
+    after Hermes activity.
     """
 
     def __init__(self, hermes_home: Optional[Path] = None):
         self.hermes_home = hermes_home or Path.home() / ".hermes"
         self.skills_dir = self.hermes_home / "skills"
-        self.memory_dir = self.hermes_home / "memory"  # placeholder
+        self.memory_dir = self.hermes_home / "memory"
         self.history_file = self.hermes_home / "evolution_history.json"
         self._ensure_history_file()
 
     def _ensure_history_file(self):
-        """Create history file if it doesn't exist."""
+        """Create history file if it does not exist."""
         if not self.history_file.exists():
+            self.history_file.parent.mkdir(parents=True, exist_ok=True)
             self.history_file.write_text("[]", encoding="utf-8")
 
     def load_history(self, limit: int = 10) -> list:
@@ -59,43 +59,37 @@ class EvolutionHook:
             return []
 
     def record_evolution_event(self, event: Dict[str, Any]):
-        """Save an evolution event to history."""
+        """Save an evolution event to history (keeps last 50)."""
         try:
             history = json.loads(self.history_file.read_text(encoding="utf-8"))
             if not isinstance(history, list):
                 history = []
             history.append(event)
-            # Keep only last 50 events
             if len(history) > 50:
                 history = history[-50:]
-            self.history_file.write_text(json.dumps(history, indent=2, ensure_ascii=False), encoding="utf-8")
+            self.history_file.write_text(
+                json.dumps(history, indent=2, ensure_ascii=False), encoding="utf-8"
+            )
         except Exception as e:
             print(f"Warning: Could not save evolution history: {e}")
 
     def analyze_recent_patterns(self, limit: int = 10) -> Dict[str, Any]:
-        """
-        Analyze recent evolution history for patterns.
-        Returns insights like repeated focus areas, frequency, etc.
-        """
+        """Analyze recent history for patterns (repeated focus areas, frequency)."""
         history = self.load_history(limit=limit)
         if not history:
             return {"status": "no_history"}
 
         triggered_events = [e for e in history if e.get("triggered", False)]
 
-        # Simple pattern: check if many recent triggers were about similar keywords
-        recent_keywords = []
+        recent_keywords: List[str] = []
         for event in triggered_events[-5:]:
             ctx = event.get("task_context", {})
             recent_keywords.extend(ctx.get("keywords", []))
 
-        from collections import Counter
         keyword_counts = Counter(recent_keywords)
         most_common = keyword_counts.most_common(3)
 
-        same_area_repeated = False
-        if most_common and most_common[0][1] >= 3:
-            same_area_repeated = True
+        same_area_repeated = bool(most_common and most_common[0][1] >= 3)
 
         return {
             "status": "ok",
@@ -109,29 +103,30 @@ class EvolutionHook:
         """
         Decide whether to trigger hermes-evolution-orchestrator.
 
-        Heuristics (can be extended):
-        - High complexity score
-        - New skill was created or significantly changed
-        - Explicit evolution request from user or model
-        - Keywords indicating need for reflection/improvement
-        - Low confidence or signs of struggle in the task result
-        - Task involved multiple steps or sub-agents
-        - Not triggered too recently (rate limiting via history)
+        Heuristics:
+        - Explicit request
+        - New skill created
+        - High complexity
+        - Evolution-related keywords
+        - Low confidence or signs of struggle
+        - Multi-step work
+        - Rate limiting via recent history
         """
         complexity = task_context.get("complexity", 0)
         new_skill_created = task_context.get("new_skill_created", False)
         explicit_request = task_context.get("explicit_evolution_request", False)
-        keywords = task_context.get("keywords", [])
+        keywords = [k.lower() for k in task_context.get("keywords", [])]
         confidence = task_context.get("confidence", 1.0)
         multi_step = task_context.get("multi_step", False)
         struggled = task_context.get("struggled", False)
 
         evolution_keywords = {
-            "orchestrate", "evolution", "self-improvement", "improve the cycle",
-            "reflection", "audit", "improve", "evolve",
+            "orchestrate", "evolution", "self-improvement", "esra",
+            "self-development", "audit", "reflect", "improve cycle",
+            "meta", "antifragile", "loop-auditor"
         }
 
-        # Simple rate limiting using history
+        # Rate limiting
         recent_history = self.load_history(limit=5)
         recent_triggers = [e for e in recent_history if e.get("triggered", False)]
         triggered_recently = len(recent_triggers) >= 3
@@ -142,7 +137,7 @@ class EvolutionHook:
             return True
         if complexity >= 7:
             return True
-        if any(kw.lower() in evolution_keywords for kw in keywords):
+        if any(kw in evolution_keywords for kw in keywords):
             return True
         if confidence < 0.6:
             return True
@@ -151,30 +146,22 @@ class EvolutionHook:
         if triggered_recently:
             return False
 
-        # Simple pattern detection from history
-        patterns = self.analyze_recent_patterns(limit=8)
-        if patterns.get("same_area_repeated", False):
-            # If we've been improving the same area a lot, still allow trigger
-            # but the orchestrator can decide on deeper work
-            pass
-
         return False
 
     def build_orchestrator_prompt(self, task_context: Dict[str, Any]) -> str:
-        """
-        Generate the prompt/instruction to send to hermes-evolution-orchestrator.
-        """
+        """Generate a clean prompt for hermes-evolution-orchestrator."""
         task_summary = task_context.get("summary", "Unknown task")
         complexity = task_context.get("complexity", "unknown")
 
-        prompt = f"""After completing the task:
+        prompt = f"""After completing the following task:
 
 Task: {task_summary}
 Complexity: {complexity}
 
-Run hermes-evolution-orchestrator.
-Analyze the result, update mental models, and if needed
-engage other meta-skills (ooda-framework, self-improver, loop-auditor, etc.).
+Run hermes-evolution-orchestrator (or say "orchestrate evolution" / "run full ESRA cycle").
+
+Analyze the result, update mental models, and engage other meta-skills as needed
+(self-improver, value-clarifier, experimenter, loop-auditor, antifragility-builder, etc.).
 
 Save important insights to persistent memory.
 """
@@ -182,12 +169,9 @@ Save important insights to persistent memory.
 
     def trigger_orchestrator(self, task_context: Dict[str, Any]) -> Dict[str, Any]:
         """
-        Main entry point. In a real integration this would:
-        - Call Hermes tool/sub-agent system
-        - Or print instructions for the model to follow
-        - Or write to a queue / trigger file
-
-        Currently returns a structured decision + prompt.
+        Main entry point.
+        Returns a structured decision + recommended prompt.
+        In a full native integration this would call Hermes tools / sub-agents.
         """
         decision = self.should_trigger_orchestrator(task_context)
 
@@ -203,11 +187,9 @@ Save important insights to persistent memory.
             result["recommended_action"] = (
                 "Run hermes-evolution-orchestrator with the provided prompt"
             )
-            # Record successful trigger in history
             self.record_evolution_event(result)
         else:
             result["recommended_action"] = "Orchestration not required"
-            # Still record the decision (for rate limiting)
             self.record_evolution_event(result)
 
         return result
@@ -217,19 +199,13 @@ Save important insights to persistent memory.
     # ------------------------------------------------------------------
 
     def watch_skills_directory(self):
-        """
-        Placeholder for a file watcher that monitors ~/.hermes/skills/
-        for new or modified skills and triggers the hook.
-        """
-        print("Watching skills directory is not yet implemented.")
-        print("This could use watchdog, inotify, or polling.")
+        """Placeholder for a file watcher on ~/.hermes/skills/."""
+        print("Skills directory watching is not yet implemented.")
+        print("Possible implementations: watchdog, inotify, or polling.")
 
     def integrate_as_hermes_tool(self):
-        """
-        Placeholder for registering this hook as a native Hermes tool
-        or sub-agent.
-        """
-        print("Integration as Hermes tool/sub-agent is planned but not implemented yet.")
+        """Placeholder for native Hermes tool / sub-agent registration."""
+        print("Native Hermes tool/sub-agent integration is planned but not implemented yet.")
 
 
 # ----------------------------------------------------------------------
@@ -239,7 +215,7 @@ Save important insights to persistent memory.
 if __name__ == "__main__":
     hook = EvolutionHook()
 
-    # Example 1: Complex task with skill creation
+    # Example 1: Complex task that created a new skill
     example_task_1 = {
         "summary": "Implemented a complex multi-step integration between Hermes and an external API",
         "complexity": 8,
@@ -250,24 +226,25 @@ if __name__ == "__main__":
         "confidence": 0.75,
     }
 
-    print("=== Example 1 ===")
+    print("=== Example 1: High complexity + new skill ===")
     result_1 = hook.trigger_orchestrator(example_task_1)
     print(json.dumps(result_1, indent=2, ensure_ascii=False))
 
-    # Example 2: Task with low confidence
+    # Example 2: Low confidence / struggle
     example_task_2 = {
-        "summary": "Attempted a non-standard problem but the result is uncertain",
+        "summary": "Attempted to solve a non-standard problem with uncertain outcome",
         "complexity": 6,
         "new_skill_created": False,
         "struggled": True,
         "confidence": 0.45,
+        "keywords": ["uncertain", "difficult"],
     }
 
-    print("\n=== Example 2 ===")
+    print("\n=== Example 2: Low confidence ===")
     result_2 = hook.trigger_orchestrator(example_task_2)
     print(json.dumps(result_2, indent=2, ensure_ascii=False))
 
-    # Demonstrate pattern analysis
-    print("\n=== Pattern analysis of history ===")
+    # Pattern analysis demo
+    print("\n=== Recent pattern analysis ===")
     patterns = hook.analyze_recent_patterns(limit=10)
     print(json.dumps(patterns, indent=2, ensure_ascii=False))
