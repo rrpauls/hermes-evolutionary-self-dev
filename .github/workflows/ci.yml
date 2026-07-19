@@ -1,4 +1,4 @@
-name: CI - Evolutionary Self-Development
+name: CI - ESRA (Hermes Implementation)
 
 on:
   push:
@@ -20,25 +20,63 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install pyyaml  # for potential future SKILL.md validation
+          pip install pyyaml
 
       - name: Validate Python syntax
         run: |
           python -m py_compile tools/evolution-hook.py
+          echo "✅ evolution-hook.py syntax OK"
 
-      - name: Check SKILL.md files exist and have basic structure
+      - name: Check all skills have SKILL.md
         run: |
-          echo "Checking evolutionary skills..."
+          echo "Checking ESRA meta-skills..."
+          missing=0
           for skill in optional-skills/evolutionary-self-dev/*/; do
+            name=$(basename "$skill")
             if [ -f "${skill}SKILL.md" ]; then
-              echo "✅ $(basename $skill) - SKILL.md exists"
+              echo "✅ $name"
             else
-              echo "❌ $(basename $skill) - missing SKILL.md"
+              echo "❌ $name - missing SKILL.md"
+              missing=1
+            fi
+          done
+          if [ $missing -eq 1 ]; then
+            exit 1
+          fi
+
+      - name: Validate SKILL.md frontmatter (basic)
+        run: |
+          echo "Validating frontmatter..."
+          for skill in optional-skills/evolutionary-self-dev/*/SKILL.md; do
+            name=$(basename $(dirname "$skill"))
+            if grep -q "^name:" "$skill" && grep -q "^description:" "$skill"; then
+              echo "✅ $name has name + description"
+            else
+              echo "❌ $name missing required frontmatter fields"
               exit 1
             fi
           done
 
-      - name: Verify install script is executable
+      - name: Guard against old branding
+        run: |
+          echo "Checking for forbidden old naming..."
+          if grep -r -i --include="*.md" -E "Evolutionary Self-Development Architecture|ESDA[^R]|Self-Development Architecture" \
+               README.md AGENTS.md optional-skills/ tools/ 2>/dev/null; then
+            echo "❌ Found residual old branding. Please update to ESRA."
+            exit 1
+          else
+            echo "✅ No old branding detected"
+          fi
+
+      - name: Verify key documentation
+        run: |
+          [ -f "README.md" ] && echo "✅ README.md exists"
+          [ -f "AGENTS.md" ] && echo "✅ AGENTS.md exists"
+          grep -q "ESRA" README.md && echo "✅ README.md mentions ESRA"
+          grep -q "rrpauls/esra" README.md && echo "✅ README.md links to esra specification repo"
+          grep -q "ESRA" AGENTS.md && echo "✅ AGENTS.md mentions ESRA"
+
+      - name: Verify install script
         run: |
           if [ -x "install-evolutionary-skills.sh" ]; then
             echo "✅ install-evolutionary-skills.sh is executable"
@@ -47,11 +85,7 @@ jobs:
             exit 1
           fi
 
-      - name: Validate README and AGENTS.md exist
-        run: |
-          [ -f "README.md" ] && echo "✅ README.md exists"
-          [ -f "AGENTS.md" ] && echo "✅ AGENTS.md exists"
-
       - name: Summary
         run: |
-          echo "✅ All basic validations passed for Evolutionary Self-Development fork"
+          echo "✅ All ESRA validation checks passed"
+          echo "Repository is consistent with Evolutionary Self-Recursive Architecture"
