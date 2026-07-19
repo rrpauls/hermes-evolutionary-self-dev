@@ -1,4 +1,4 @@
-# hermes-evolutionary-self-dev
+# hermes-esra
 
 **Hermes implementation of ESRA — Evolutionary Self-Recursive Architecture**
 
