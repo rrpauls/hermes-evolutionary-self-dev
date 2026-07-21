@@ -2,8 +2,8 @@
 
 **Goal:** Establish Hermes as a self-improving agent through systematic integration of the Evolutionary Self-Recursive Architecture (ESRA).
 
-**Current Status:** v1.2 (Core ESRA Meta-Skills Installed)
-**Last Updated:** 22 July 2026
+**Current Status:** v1.2 (Core ESRA Meta-Skills Installed)  
+**Last Updated:** 19 July 2026
 
 ---
 
@@ -51,18 +51,18 @@
 ### Work Items
 
 #### 2.1 ESRA Cycle Logging
-- [x] Structured JSON logging for all orchestrator invocations
-- [x] Log schema for:
+- [ ] Structured JSON logging for all orchestrator invocations
+- [ ] Log schema for:
   - Input state (task complexity, prior success rate, skills available)
   - Orchestrator decisions (which skills activated, meta-loop stage)
   - Outputs (new skills created, improvements applied, value changes)
   - Duration and resource consumption
-- [x] Central log aggregation in `~/.hermes/evolution-logs/`
-- [x] Retention policy (30-day rolling history)
+- [ ] Central log aggregation in `~/.hermes/evolution-logs/`
+- [ ] Retention policy (30-day rolling history)
 
 #### 2.2 Evolution Dashboard
-- [x] Create `tools/evolution-dashboard.py` — Web UI or CLI visualization
-- [x] Display metrics:
+- [ ] Create `tools/evolution-dashboard.py` — Web UI or CLI visualization
+- [ ] Display metrics:
   - Cycle count and success rate
   - New skills created vs. skills improved
   - Value stability across cycles
@@ -342,6 +342,6 @@ To help advance this roadmap:
 
 ---
 
-**Roadmap Version:** 1.0
-**Next Review:** Q3 2026
+**Roadmap Version:** 1.0  
+**Next Review:** Q3 2026  
 **Maintained by:** rrpauls + Contributors
