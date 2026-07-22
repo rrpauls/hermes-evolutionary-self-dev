@@ -44,3 +44,29 @@ def test_dashboard_aggregates():
 
         # Verify genealogy mapping: parent-skill -> child-skill
         assert "child-skill" in metrics["skill_genealogy"]["parent-skill"]
+
+def test_display_dashboard_empty(capsys):
+    with tempfile.TemporaryDirectory() as tmpdir:
+        dashboard = EvolutionDashboard(log_dir=tmpdir)
+        dashboard.display_dashboard()
+        captured = capsys.readouterr()
+        assert "ESRA Evolution Dashboard" in captured.out
+        assert "💡 No evolution cycles have been recorded yet." in captured.out
+        assert "python tools/evolution-hook.py" in captured.out
+
+def test_display_dashboard_populated(capsys):
+    with tempfile.TemporaryDirectory() as tmpdir:
+        logger = ESRALogger(log_dir=tmpdir)
+        logger.log_cycle(
+            {"task_complexity": 5, "prior_success_rate": 1.0, "skills_available": []},
+            {"skills_activated": [], "meta_loop_stage": "ACT"},
+            {"success": True},
+            {"duration_seconds": 1.0}
+        )
+        dashboard = EvolutionDashboard(log_dir=tmpdir)
+        dashboard.display_dashboard()
+        captured = capsys.readouterr()
+        assert "ESRA Evolution Dashboard" in captured.out
+        assert "Total Cycles:" in captured.out
+        assert "Success Rate:" in captured.out
+        assert "[████████████████████]" in captured.out  # 100% success rate bar

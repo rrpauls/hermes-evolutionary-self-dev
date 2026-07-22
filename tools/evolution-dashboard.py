@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+import os
+import sys
 import json
 import argparse
 from pathlib import Path
@@ -72,25 +74,66 @@ class EvolutionDashboard:
         logs = self.load_logs()
         metrics = self.calculate_metrics(logs)
 
+        use_color = sys.stdout.isatty() and "NO_COLOR" not in os.environ
+
+        # Standard ANSI escape codes
+        CLR_RESET = "\033[0m" if use_color else ""
+        CLR_BOLD = "\033[1m" if use_color else ""
+        CLR_CYAN = "\033[36m" if use_color else ""
+        CLR_GREEN = "\033[32m" if use_color else ""
+        CLR_YELLOW = "\033[33m" if use_color else ""
+        CLR_RED = "\033[31m" if use_color else ""
+
+        if metrics["total_cycles"] == 0:
+            print("="*50)
+            print(" " * 12 + f"{CLR_BOLD}ESRA Evolution Dashboard{CLR_RESET}")
+            print("="*50)
+            print(f"\n{CLR_YELLOW}💡 No evolution cycles have been recorded yet.{CLR_RESET}")
+            print("To run your first ESRA cycle and see evolution metrics, execute:")
+            print(f"  {CLR_BOLD}python tools/evolution-hook.py{CLR_RESET}\n")
+            print("="*50)
+            return
+
+        # Determine success rate and color
+        success_rate = metrics["success_rate"]
+        if success_rate >= 80.0:
+            rate_color = CLR_GREEN
+        elif success_rate >= 50.0:
+            rate_color = CLR_YELLOW
+        else:
+            rate_color = CLR_RED
+
+        # Progress bar construction
+        bar_width = 20
+        filled_len = int(round(bar_width * success_rate / 100))
+        bar = "█" * filled_len + "░" * (bar_width - filled_len)
+        progress_bar = f"{rate_color}[{bar}]{CLR_RESET} {CLR_BOLD}{success_rate:.1f}%{CLR_RESET}"
+
+        # Anomaly and crisis intervention formatting
+        anomaly_str = f"{CLR_YELLOW}{metrics['anomalies_count']}{CLR_RESET}" if metrics["anomalies_count"] > 0 else f"{metrics['anomalies_count']}"
+        crisis_str = f"{CLR_RED}{metrics['crisis_interventions_count']}{CLR_RESET}" if metrics["crisis_interventions_count"] > 0 else f"{metrics['crisis_interventions_count']}"
+        skills_str = f"{CLR_GREEN}{metrics['new_skills_created']}{CLR_RESET}" if metrics["new_skills_created"] > 0 else f"{metrics['new_skills_created']}"
+        improvements_str = f"{CLR_GREEN}{metrics['improvements_applied']}{CLR_RESET}" if metrics["improvements_applied"] > 0 else f"{metrics['improvements_applied']}"
+
         print("="*50)
-        print(" " * 12 + "ESRA Evolution Dashboard")
+        print(" " * 12 + f"{CLR_CYAN}{CLR_BOLD}ESRA Evolution Dashboard{CLR_RESET}")
         print("="*50)
-        print(f"Total Cycles:           {metrics['total_cycles']}")
-        print(f"Success Rate:           {metrics['success_rate']:.1f}% ({metrics['successful_cycles']} successful)")
+        print(f"Total Cycles:           {CLR_BOLD}{metrics['total_cycles']}{CLR_RESET}")
+        print(f"Success Rate:           {progress_bar} ({metrics['successful_cycles']} successful)")
         print("-"*50)
-        print(f"New Skills Created:     {metrics['new_skills_created']}")
-        print(f"Improvements Applied:   {metrics['improvements_applied']}")
+        print(f"New Skills Created:     {skills_str}")
+        print(f"Improvements Applied:   {improvements_str}")
         print(f"Value Stability:        {metrics['value_changes_count']} value changes detected")
-        print(f"Anomalies Detected:     {metrics['anomalies_count']}")
-        print(f"Crisis Interventions:   {metrics['crisis_interventions_count']}")
+        print(f"Anomalies Detected:     {anomaly_str}")
+        print(f"Crisis Interventions:   {crisis_str}")
         print("-"*50)
 
-        print("Skill Genealogy (Parent -> Child):")
+        print(f"{CLR_BOLD}Skill Genealogy (Parent -> Child):{CLR_RESET}")
         if not metrics["skill_genealogy"]:
             print("  No genealogy data available.")
         else:
             for parent, children in metrics["skill_genealogy"].items():
-                print(f"  {parent} -> {', '.join(children)}")
+                print(f"  {CLR_CYAN}{parent}{CLR_RESET} -> {', '.join(children)}")
         print("="*50)
 
 if __name__ == "__main__":
