@@ -15,17 +15,28 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.11'
+          python-version: "3.11"
 
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install pyyaml
+          pip install pyyaml pytest
 
       - name: Validate Python syntax
         run: |
           python -m py_compile tools/evolution-hook.py
-          echo "✅ evolution-hook.py syntax OK"
+          python -m py_compile tools/skill_validator.py
+          echo "✅ tools syntax OK"
+
+      - name: Validate ESRA skills metadata and DAG structure
+        run: |
+          python tools/skill_validator.py --verbose
+          echo "✅ ESRA skills metadata and DAG validation OK"
+
+      - name: Run test suite
+        run: |
+          PYTHONPATH=. pytest
+          echo "✅ All unit, integration, scenario and stress tests passed OK"
 
       - name: Check all skills have SKILL.md
         run: |
@@ -59,7 +70,7 @@ jobs:
 
       - name: Guard against old branding
         run: |
-          echo "Checking for forbidden old naming..."
+          echo "Checking for forbidden old branding..."
           if grep -r -i --include="*.md" -E "Evolutionary Self-Development Architecture|ESDA[^R]|Self-Development Architecture" \
                README.md AGENTS.md optional-skills/ tools/ 2>/dev/null; then
             echo "❌ Found residual old branding. Please update to ESRA."
