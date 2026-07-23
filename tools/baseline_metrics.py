@@ -15,7 +15,7 @@ class BaselineMetrics:
     def __init__(self, logs_dir=None, snapshots_dir=None):
         self.logs_dir = Path(logs_dir or Path.home() / ".hermes" / "evolution-logs")
         self.snapshots_dir = Path(snapshots_dir or Path.home() / ".hermes" / "metrics-snapshots")
-        self.snapshots_dir.mkdir(parents=True, exist_ok=True)
+        self.snapshots_dir.mkdir(parents=True, exist_ok=True, mode=0o700)
 
     def define_kpis(self):
         """
@@ -95,7 +95,8 @@ class BaselineMetrics:
         filename = f"metrics_snapshot_{month_str}.json"
         filepath = self.snapshots_dir / filename
 
-        with open(filepath, "w", encoding="utf-8") as f:
+        fd = os.open(filepath, os.O_WRONLY | os.O_CREAT | os.O_TRUNC, 0o600)
+        with os.fdopen(fd, "w", encoding="utf-8") as f:
             json.dump(snapshot, f, indent=2, ensure_ascii=False)
 
         return str(filepath)
