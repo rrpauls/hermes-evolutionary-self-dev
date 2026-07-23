@@ -7,3 +7,8 @@
 **Vulnerability:** Programmatic updates to agent configurations, system prompts, reasoning traces, and versioned skill files can be exposed to unauthorized local users if created with standard world-readable permissions.
 **Learning:** Config files and prompts often govern the security posture and operational boundaries of an agent. Exposing them can allow local privilege escalation or prompt injection attacks.
 **Prevention:** Enforce strict `0o600` POSIX file permissions programmatically using `os.open` with specific O_CREAT flags when updating prompts, configurations, or reasoning trace files during evolution cycles.
+
+## 2026-07-22 - [Insecure Default File Permissions for Reports and Snapshots]
+**Vulnerability:** Reports and metric snapshot files were being created with default system permissions, which could expose sensitive evaluation context, metrics, and generated reports to unauthorized local users.
+**Learning:** Even internal tooling and report generation must enforce strict POSIX permissions to prevent passive context leakage.
+**Prevention:** Always enforce strict `0o600` POSIX file permissions programmatically using `os.open` with specific O_CREAT flags, and use `0o700` when creating directories, for any file that might contain sensitive data or agent context.

@@ -14,7 +14,7 @@ from datetime import datetime
 class HumanOversight:
     def __init__(self, output_dir=None):
         self.output_dir = Path(output_dir or Path.home() / ".hermes" / "oversight-reports")
-        self.output_dir.mkdir(parents=True, exist_ok=True)
+        self.output_dir.mkdir(parents=True, exist_ok=True, mode=0o700)
 
     def generate_crisis_issue_template(self, crisis_details):
         """
@@ -41,7 +41,8 @@ Please review the evolution logs and provide guidance on how to resolve this ano
 """
         filename = f"crisis_issue_{timestamp.replace(':', '-')}.md"
         filepath = self.output_dir / filename
-        with open(filepath, "w", encoding="utf-8") as f:
+        fd = os.open(filepath, os.O_WRONLY | os.O_CREAT | os.O_TRUNC, 0o600)
+        with os.fdopen(fd, "w", encoding="utf-8") as f:
             f.write(template)
 
         return str(filepath)
@@ -70,7 +71,8 @@ Please review this summary to ensure Hermes is evolving safely and remaining ali
 """
         filename = f"weekly_report_{date_str}.md"
         filepath = self.output_dir / filename
-        with open(filepath, "w", encoding="utf-8") as f:
+        fd = os.open(filepath, os.O_WRONLY | os.O_CREAT | os.O_TRUNC, 0o600)
+        with os.fdopen(fd, "w", encoding="utf-8") as f:
             f.write(template)
 
         return str(filepath)
