@@ -216,8 +216,15 @@ class SkillValidator:
 
 def stage_and_promote(skills_src: Path, staging_dir: Path, prod_dir: Path, verbose: bool = False) -> bool:
     """Implements staging, verification, promotion, and rollback."""
+    use_color = sys.stdout.isatty() and "NO_COLOR" not in os.environ
+    CLR_RESET = "\033[0m" if use_color else ""
+    CLR_BOLD = "\033[1m" if use_color else ""
+    CLR_CYAN = "\033[36m" if use_color else ""
+    CLR_GREEN = "\033[32m" if use_color else ""
+    CLR_RED = "\033[31m" if use_color else ""
+
     print("=" * 60)
-    print("  ESRA Staging and Promotion Engine")
+    print(f"  {CLR_CYAN}{CLR_BOLD}ESRA Staging and Promotion Engine{CLR_RESET}")
     print("=" * 60)
 
     skills_src = Path(skills_src)
@@ -229,7 +236,7 @@ def stage_and_promote(skills_src: Path, staging_dir: Path, prod_dir: Path, verbo
         shutil.rmtree(staging_dir)
     staging_dir.mkdir(parents=True, exist_ok=True)
 
-    print(f"1. Copying skills from src '{skills_src}' to staging '{staging_dir}'...")
+    print(f"{CLR_BOLD}1. Copying skills from src '{skills_src}' to staging '{staging_dir}'...{CLR_RESET}")
     for item in skills_src.iterdir():
         if item.is_dir() and not item.name.startswith("."):
             shutil.copytree(item, staging_dir / item.name)
@@ -237,20 +244,20 @@ def stage_and_promote(skills_src: Path, staging_dir: Path, prod_dir: Path, verbo
             shutil.copy2(item, staging_dir)
 
     # 2. Run validations on staging directory
-    print("2. Running validation suite on staging directory...")
+    print(f"{CLR_BOLD}2. Running validation suite on staging directory...{CLR_RESET}")
     validator = SkillValidator(staging_dir, verbose=verbose)
     success, errors, order = validator.run_all_validation()
 
     if not success:
-        print("❌ Validation FAILED in staging directory. Aborting promotion.")
+        print(f"❌ {CLR_RED}Validation FAILED in staging directory. Aborting promotion.{CLR_RESET}", file=sys.stderr)
         for skill_name, errs in errors.items():
-            print(f"  [{skill_name}]:")
+            print(f"  [{skill_name}]:", file=sys.stderr)
             for err in errs:
-                print(f"    - {err}")
+                print(f"    - {err}", file=sys.stderr)
         shutil.rmtree(staging_dir)
         return False
 
-    print("✅ Validation PASSED in staging directory.")
+    print(f"✅ {CLR_GREEN}Validation PASSED in staging directory.{CLR_RESET}")
     if order:
         print(f"   Dependency loading order: { ' -> '.join(order) }")
 
@@ -260,12 +267,12 @@ def stage_and_promote(skills_src: Path, staging_dir: Path, prod_dir: Path, verbo
         backup_dir = Path(tempfile.mkdtemp(prefix="prod_skills_backup_"))
         if backup_dir.exists():
             shutil.rmtree(backup_dir)
-        print(f"3. Backing up existing production directory to '{backup_dir}'...")
+        print(f"{CLR_BOLD}3. Backing up existing production directory to '{backup_dir}'...{CLR_RESET}")
         shutil.copytree(prod_dir, backup_dir)
 
     # 4. Promote from staging to production
     try:
-        print(f"4. Promoting skills from staging to production directory '{prod_dir}'...")
+        print(f"{CLR_BOLD}4. Promoting skills from staging to production directory '{prod_dir}'...{CLR_RESET}")
         if prod_dir.exists():
             shutil.rmtree(prod_dir)
         prod_dir.mkdir(parents=True, exist_ok=True)
@@ -274,7 +281,7 @@ def stage_and_promote(skills_src: Path, staging_dir: Path, prod_dir: Path, verbo
                 shutil.copytree(item, prod_dir / item.name)
             elif item.is_file():
                 shutil.copy2(item, prod_dir)
-        print("✅ Promotion completed successfully!")
+        print(f"✅ {CLR_GREEN}Promotion completed successfully!{CLR_RESET}")
 
         shutil.rmtree(staging_dir)
         # Clean backup if everything succeeded
@@ -282,18 +289,23 @@ def stage_and_promote(skills_src: Path, staging_dir: Path, prod_dir: Path, verbo
             shutil.rmtree(backup_dir)
         return True
     except Exception as e:
-        print(f"❌ Critical error during promotion: {e}")
+        print(f"❌ {CLR_RED}Critical error during promotion: {e}{CLR_RESET}", file=sys.stderr)
         if backup_dir and backup_dir.exists():
-            print("🔄 Attempting rollback to previous production state...")
+            print(f"🔄 {CLR_BOLD}Attempting rollback to previous production state...{CLR_RESET}")
             if prod_dir.exists():
                 shutil.rmtree(prod_dir)
             shutil.copytree(backup_dir, prod_dir)
             shutil.rmtree(backup_dir)
-            print("✅ Rollback successful.")
+            print(f"✅ {CLR_GREEN}Rollback successful.{CLR_RESET}")
         return False
 
 
 def main():
+    use_color = sys.stdout.isatty() and "NO_COLOR" not in os.environ
+    CLR_RESET = "\033[0m" if use_color else ""
+    CLR_GREEN = "\033[32m" if use_color else ""
+    CLR_RED = "\033[31m" if use_color else ""
+
     parser = argparse.ArgumentParser(description="ESRA Skill Validation & Promotion Utility")
     parser.add_argument("--skills-dir", default="optional-skills/evolutionary-self-dev",
                         help="Path to development skills directory")
@@ -315,16 +327,16 @@ def main():
         validator = SkillValidator(Path(args.skills_dir), verbose=args.verbose)
         success, errors, order = validator.run_all_validation()
         if success:
-            print("✅ All skills are valid.")
+            print(f"✅ {CLR_GREEN}All skills are valid.{CLR_RESET}")
             if order:
                 print(f"Dependency loading order: { ' -> '.join(order) }")
             sys.exit(0)
         else:
-            print("❌ Skill validation failed:")
+            print(f"❌ {CLR_RED}Skill validation failed:{CLR_RESET}", file=sys.stderr)
             for skill_name, errs in errors.items():
-                print(f"  [{skill_name}]:")
+                print(f"  [{skill_name}]:", file=sys.stderr)
                 for err in errs:
-                    print(f"    - {err}")
+                    print(f"    - {err}", file=sys.stderr)
             sys.exit(1)
 
 
