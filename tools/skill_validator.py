@@ -16,6 +16,7 @@ import argparse
 import re
 import shutil
 import tempfile
+import heapq
 from pathlib import Path
 from typing import Dict, List, Set, Tuple, Optional
 
@@ -186,26 +187,32 @@ class SkillValidator:
                     valid_deps.append(dep)
             graph[skill_name] = set(valid_deps)
 
+        import heapq
+
+        # ⚡ BOLT OPTIMIZATION:
+        # Replaced O(V²) nested loops with O(V + E) approach using adjacency lists
         # Kahn's algorithm for topological sorting of dependencies
         in_degree = {u: 0 for u in graph}
+        dependents = {u: [] for u in graph}
+
         for u in graph:
             for v in graph[u]:
                 if v in in_degree:
                     in_degree[u] += 1
+                    dependents[v].append(u)
 
         queue = [u for u in graph if in_degree[u] == 0]
+        heapq.heapify(queue)
         loading_order = []
 
         while queue:
-            queue.sort()
-            u = queue.pop(0)
+            u = heapq.heappop(queue)
             loading_order.append(u)
 
-            for v in graph:
-                if u in graph[v]:
-                    in_degree[v] -= 1
-                    if in_degree[v] == 0:
-                        queue.append(v)
+            for v in dependents[u]:
+                in_degree[v] -= 1
+                if in_degree[v] == 0:
+                    heapq.heappush(queue, v)
 
         if len(loading_order) < len(graph):
             unresolved = set(graph.keys()) - set(loading_order)
