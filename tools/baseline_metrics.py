@@ -10,6 +10,7 @@ import json
 from pathlib import Path
 from datetime import datetime
 import os
+import sys
 
 class BaselineMetrics:
     def __init__(self, logs_dir=None, snapshots_dir=None):
@@ -102,11 +103,28 @@ class BaselineMetrics:
         return str(filepath)
 
 if __name__ == "__main__":
+    use_color = sys.stdout.isatty() and "NO_COLOR" not in os.environ
+    CLR_RESET = "\033[0m" if use_color else ""
+    CLR_BOLD = "\033[1m" if use_color else ""
+    CLR_CYAN = "\033[36m" if use_color else ""
+    CLR_GREEN = "\033[32m" if use_color else ""
+    CLR_YELLOW = "\033[33m" if use_color else ""
+
     tracker = BaselineMetrics()
 
-    print("Defined KPIs:")
-    print(json.dumps(tracker.define_kpis(), indent=2))
+    metrics = tracker.calculate_current_metrics()
+    if metrics["total_cycles_analyzed"] == 0:
+        print("="*50)
+        print(" " * 12 + f"{CLR_BOLD}ESRA Baseline Metrics{CLR_RESET}")
+        print("="*50)
+        print(f"\n{CLR_YELLOW}💡 No evolution cycles have been recorded yet.{CLR_RESET}")
+        print("To run your first ESRA cycle and see evolution metrics, execute:")
+        print(f"  {CLR_BOLD}python tools/evolution-hook.py{CLR_RESET}\n")
+        print("="*50)
+    else:
+        print(f"{CLR_CYAN}{CLR_BOLD}Defined KPIs:{CLR_RESET}")
+        print(json.dumps(tracker.define_kpis(), indent=2))
 
-    print("\nTaking monthly snapshot...")
-    snapshot_path = tracker.take_monthly_snapshot()
-    print(f"Snapshot saved to: {snapshot_path}")
+        print(f"\n{CLR_CYAN}Taking monthly snapshot...{CLR_RESET}")
+        snapshot_path = tracker.take_monthly_snapshot()
+        print(f"{CLR_GREEN}✓ Snapshot saved to:{CLR_RESET} {snapshot_path}")
