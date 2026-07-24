@@ -241,7 +241,7 @@ def stage_and_promote(skills_src: Path, staging_dir: Path, prod_dir: Path, verbo
     # 1. Clean staging directory and copy source files there
     if staging_dir.exists():
         shutil.rmtree(staging_dir)
-    staging_dir.mkdir(parents=True, exist_ok=True)
+    staging_dir.mkdir(parents=True, exist_ok=True, mode=0o700)
 
     print(f"{CLR_BOLD}1. Copying skills from src '{skills_src}' to staging '{staging_dir}'...{CLR_RESET}")
     for item in skills_src.iterdir():
@@ -272,17 +272,15 @@ def stage_and_promote(skills_src: Path, staging_dir: Path, prod_dir: Path, verbo
     backup_dir = None
     if prod_dir.exists():
         backup_dir = Path(tempfile.mkdtemp(prefix="prod_skills_backup_"))
-        if backup_dir.exists():
-            shutil.rmtree(backup_dir)
         print(f"{CLR_BOLD}3. Backing up existing production directory to '{backup_dir}'...{CLR_RESET}")
-        shutil.copytree(prod_dir, backup_dir)
+        shutil.copytree(prod_dir, backup_dir, dirs_exist_ok=True)
 
     # 4. Promote from staging to production
     try:
         print(f"{CLR_BOLD}4. Promoting skills from staging to production directory '{prod_dir}'...{CLR_RESET}")
         if prod_dir.exists():
             shutil.rmtree(prod_dir)
-        prod_dir.mkdir(parents=True, exist_ok=True)
+        prod_dir.mkdir(parents=True, exist_ok=True, mode=0o700)
         for item in staging_dir.iterdir():
             if item.is_dir():
                 shutil.copytree(item, prod_dir / item.name)

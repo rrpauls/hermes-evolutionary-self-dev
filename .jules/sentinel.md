@@ -12,3 +12,8 @@
 **Vulnerability:** Reports and metric snapshot files were being created with default system permissions, which could expose sensitive evaluation context, metrics, and generated reports to unauthorized local users.
 **Learning:** Even internal tooling and report generation must enforce strict POSIX permissions to prevent passive context leakage.
 **Prevention:** Always enforce strict `0o600` POSIX file permissions programmatically using `os.open` with specific O_CREAT flags, and use `0o700` when creating directories, for any file that might contain sensitive data or agent context.
+
+## 2026-07-22 - [Time-of-Check to Time-of-Use (TOCTOU) Directory Hijacking in Skill Promotions]
+**Vulnerability:** In `tools/skill_validator.py`, a secure backup directory was created using `tempfile.mkdtemp()`. However, it was immediately deleted using `shutil.rmtree()` to allow `shutil.copytree()` to write to the same path. A local attacker could create a directory at that predictable path during the race window, causing `copytree` to fail. The exception handler would then incorrectly assume a legitimate backup existed and copy the attacker's injected files into the production skills directory, leading to privilege escalation or arbitrary skill execution.
+**Learning:** Never delete a securely created temporary file or directory (`mkdtemp` / `mkstemp`) just to recreate it with another function. Doing so breaks the atomic creation guarantees and introduces a TOCTOU race condition.
+**Prevention:** Use `shutil.copytree(..., dirs_exist_ok=True)` to copy contents into the already-created, secure temporary directory, preserving the strict permissions and atomicity of `mkdtemp()`.
