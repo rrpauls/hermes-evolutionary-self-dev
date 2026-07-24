@@ -42,19 +42,19 @@ class SkillValidator:
         if self.verbose:
             print(message)
 
-    def parse_frontmatter(self, file_path: Path) -> Tuple[Optional[Dict], Optional[str]]:
+    def parse_frontmatter(self, file_path: Path) -> Tuple[Optional[Dict], Optional[str], Optional[str]]:
         """Parses frontmatter from a markdown file.
-        Returns a tuple of (frontmatter_dict, error_message).
+        Returns a tuple of (frontmatter_dict, error_message, raw_content).
         """
         try:
             content = file_path.read_text(encoding="utf-8")
         except Exception as e:
-            return None, f"Failed to read file: {e}"
+            return None, f"Failed to read file: {e}", None
 
         # Search for frontmatter between triple-dash markers
         match = re.match(r"^---\s*\n(.*?)\n---\s*\n", content, re.DOTALL)
         if not match:
-            return None, "No YAML frontmatter found (missing --- boundary at start of file)"
+            return None, "No YAML frontmatter found (missing --- boundary at start of file)", content
 
         yaml_content = match.group(1)
 
@@ -62,10 +62,10 @@ class SkillValidator:
             try:
                 data = yaml.safe_load(yaml_content)
                 if not isinstance(data, dict):
-                    return None, "Frontmatter is not a valid YAML dictionary"
-                return data, None
+                    return None, "Frontmatter is not a valid YAML dictionary", content
+                return data, None, content
             except Exception as e:
-                return None, f"YAML parsing error: {e}"
+                return None, f"YAML parsing error: {e}", content
         else:
             # Fallback parser for basic key-value pairs
             data = {}
@@ -75,7 +75,7 @@ class SkillValidator:
                 if not line or line.startswith("#"):
                     continue
                 if ":" not in line:
-                    return None, f"Fallback parser error: Line {line_num} does not contain key-value separator ':'"
+                    return None, f"Fallback parser error: Line {line_num} does not contain key-value separator ':'", content
                 key, val = line.split(":", 1)
                 key = key.strip()
                 val = val.strip()
@@ -89,7 +89,7 @@ class SkillValidator:
                     # Simple single item list or comma-separated if not bracketed
                     val = [item.strip() for item in val.split(",") if item.strip()]
                 data[key] = val
-            return data, None
+            return data, None, content
 
     def validate_skill_file(self, skill_dir: Path) -> Tuple[bool, List[str], Optional[Dict]]:
         """Validates a single skill directory and its SKILL.md file."""
@@ -100,7 +100,7 @@ class SkillValidator:
             errors.append(f"Missing SKILL.md in {skill_dir.name}")
             return False, errors, None
 
-        frontmatter, err = self.parse_frontmatter(skill_file)
+        frontmatter, err, file_content = self.parse_frontmatter(skill_file)
         if err:
             errors.append(f"Frontmatter error in {skill_dir.name}/SKILL.md: {err}")
             return False, errors, None
@@ -111,14 +111,15 @@ class SkillValidator:
                 errors.append(f"Missing required field '{field}' in frontmatter of {skill_dir.name}/SKILL.md")
 
         # Verify value alignment (anti-branding checking)
+        # ⚡ BOLT OPTIMIZATION: Reuse file_content from parse_frontmatter to prevent duplicate file reads
         try:
-            content = skill_file.read_text(encoding="utf-8")
-            for pattern in self.forbidden_patterns:
-                if pattern.search(content):
-                    errors.append(f"Found forbidden branding term in {skill_dir.name}/SKILL.md")
-                    break
+            if file_content:
+                for pattern in self.forbidden_patterns:
+                    if pattern.search(file_content):
+                        errors.append(f"Found forbidden branding term in {skill_dir.name}/SKILL.md")
+                        break
         except Exception as e:
-            errors.append(f"Failed to read file for branding check: {e}")
+            errors.append(f"Failed to process content for branding check: {e}")
 
         # Check for optional required inputs / output schema declarations
         if "required_inputs" in frontmatter and not isinstance(frontmatter["required_inputs"], list):
